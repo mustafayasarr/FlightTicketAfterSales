@@ -1,0 +1,6 @@
+@FlightTicket.API_HostAddress = http://localhost:5032
+
+GET {{FlightTicket.API_HostAddress}}/v1/api/ticket/list/
+Accept: application/json
+
+###
