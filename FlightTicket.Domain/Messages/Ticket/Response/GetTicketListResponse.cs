@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightTicket.Domain.Messages.Flight.Queries.Response;
+namespace FlightTicket.Domain.Messages.Ticket.Response;
 
 public class GetTicketListResponse
 {

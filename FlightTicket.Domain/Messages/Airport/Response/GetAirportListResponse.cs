@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightTicket.Domain.Messages.Airport.Queries.Response
+namespace FlightTicket.Domain.Messages.Airport.Response
 {
     public class GetAirportListResponse
     {

@@ -1,9 +1,9 @@
 ﻿using FlightTicket.Domain.Interfaces.MediaTr;
 using FlightTicket.Domain.Messages;
-using FlightTicket.Domain.Messages.Airport.Queries.Request;
-using FlightTicket.Domain.Messages.Airport.Queries.Response;
 using FlightTicket.Infrastructure.Persistence;
 using FlightTicket.Domain.Extension;
+using FlightTicket.Domain.Messages.Airport.Request;
+using FlightTicket.Domain.Messages.Airport.Response;
 
 namespace FlightTicket.Application.Queries.Airport;
 

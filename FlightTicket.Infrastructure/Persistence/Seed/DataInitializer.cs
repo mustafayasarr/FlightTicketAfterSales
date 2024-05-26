@@ -18,6 +18,7 @@ public static class DbInitializer
         var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
         context.Database.Migrate();
         context.AirportSeedData();
+        context.FlightSeedData();
     }
     private static void AirportSeedData(this ApplicationDbContext dbContext)
     {
@@ -95,7 +96,7 @@ public static class DbInitializer
 
 
         };
-        dbContext.AddRange();
-        entity.
+        dbContext.AddRange(entity);
+        dbContext.SaveChanges();
     }
 }

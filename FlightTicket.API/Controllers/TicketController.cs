@@ -1,6 +1,6 @@
 ﻿using FlightTicket.Domain.Messages;
-using FlightTicket.Domain.Messages.Flight.Queries.Request;
-using FlightTicket.Domain.Messages.Flight.Queries.Response;
+using FlightTicket.Domain.Messages.Ticket.Request;
+using FlightTicket.Domain.Messages.Ticket.Response;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
