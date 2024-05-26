@@ -1,3 +1,4 @@
+using FlightTicket.API.Middleware;
 using FlightTicket.Application.Queries.Ticket;
 using FlightTicket.Domain.Extension;
 using FlightTicket.Infrastructure;
@@ -6,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddControllers();
 builder.Services
@@ -25,7 +27,7 @@ if (app.Environment.IsDevelopment())
     DbInitializer.SeedData(app);
     app.UseSwagger().UseSwaggerUI();
 }
-
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 app.MapControllers();
