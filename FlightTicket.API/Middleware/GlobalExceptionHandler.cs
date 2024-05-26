@@ -3,31 +3,29 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace FlightTicket.API.Middleware
+namespace FlightTicket.API.Middleware;
+
+public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
 {
-    public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
+
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        private readonly ILogger<GlobalExceptionHandler> _logger = logger;
-
-        public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+        var problemDetails = new ProblemDetails
         {
-            var problemDetails = new ProblemDetails
-            {
-                Status = StatusCodes.Status500InternalServerError,
-                Type = exception.GetType().Name,
-                Title = exception.Message,
-                Detail = exception.InnerException?.ToString(),
-                Instance = $"{httpContext.Request.Method} {httpContext.Request.Path}"
-            };
+            Status = StatusCodes.Status500InternalServerError,
+            Type = exception.GetType().Name,
+            Title = exception.Message,
+            Detail = exception.InnerException?.ToString(),
+            Instance = $"{httpContext.Request.Method} {httpContext.Request.Path}"
+        };
 
-            _logger.LogError($"Exception occurred: {JsonConvert.SerializeObject(problemDetails)}");
+        logger.LogError($"Exception occurred: {JsonConvert.SerializeObject(problemDetails)}");
 
-            var result = Result.Fail(exception.Message.ToString());
+        var result = Result.Fail(exception.Message.ToString());
 
-            await httpContext.Response
-                .WriteAsJsonAsync(result, cancellationToken);
+        await httpContext.Response
+            .WriteAsJsonAsync(result, cancellationToken);
 
-            return true;
-        }
+        return true;
     }
 }
