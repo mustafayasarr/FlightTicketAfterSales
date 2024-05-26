@@ -1,12 +1,14 @@
+using FlightTicket.API.Bootstrapper;
 using FlightTicket.API.Middleware;
 using FlightTicket.Application.Queries.Ticket;
 using FlightTicket.Domain.Extension;
 using FlightTicket.Infrastructure;
 using FlightTicket.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.AddSerilog();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
@@ -27,8 +29,10 @@ if (app.Environment.IsDevelopment())
     DbInitializer.SeedData(app);
     app.UseSwagger().UseSwaggerUI();
 }
-app.UseExceptionHandler();
 
+app.UseSerilogRequestLogging();
+app.UseExceptionHandler();
+app.UseMiddleware<ExceptionLoggerMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
