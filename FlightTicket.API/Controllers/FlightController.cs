@@ -6,8 +6,11 @@ using FlightTicket.Domain.Messages.Ticket.Response;
 using FlightTicket.Domain.Messages.Flight.Request;
 using FlightTicket.Domain.Messages.Flight.Response;
 using FlightTicket.Domain.Messages.Ticket.Request;
+using FlightTicket.API.Filter;
 
 namespace FlightTicket.API.Controllers;
+
+[ModelValidator]
 
 public class FlightController : BaseApiController
 {

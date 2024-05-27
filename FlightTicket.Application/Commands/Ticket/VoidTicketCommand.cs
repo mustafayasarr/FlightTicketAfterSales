@@ -11,11 +11,11 @@ public class VoidTicketCommand(ApplicationDbContext context) : ICommandHandler<V
 {
     public async Task<Result<VoidTicketResponse>> Handle(VoidTicketRequest request, CancellationToken cancellationToken)
     {
-        var getTicket = await context.Tickets.Include(a => a.Flight).Where(a => a.Id == request.TicketId && a.PNR == request.PNR && a.IsActive).FirstOrDefaultAsync();
+        var getTicket = await context.Tickets.Include(a => a.Flight).Where(a => a.Id == new Guid(request.TicketId) && a.PNR == request.PNR && a.IsActive).FirstOrDefaultAsync();
 
         if (getTicket is null)
             return Result.Fail<VoidTicketResponse>("Kayıtlı bilet bulunamadı");
-            
+
         if (getTicket.Flight.DepartureDateTime <= DateTime.Now)
             return Result.Fail<VoidTicketResponse>("Uçuş tamamlandığından dolayı bilet iptal edilemiyor.");
 

@@ -15,7 +15,7 @@ public class BookingCommand(ApplicationDbContext context) : ICommandHandler<Book
     {
         if (!request.IsNewPassenger)
         {
-            var passengerEntity = await context.Passengers.AsNoTracking().FirstOrDefaultAsync(a => a.Id == request.PassengerId);
+            var passengerEntity = await context.Passengers.AsNoTracking().FirstOrDefaultAsync(a => a.Id == new Guid(request.PassengerId));
             if (passengerEntity == null)
                 return Result.Fail<BookingResponse>("Yolcu kaydı bulunamadı");
         }
@@ -28,18 +28,18 @@ public class BookingCommand(ApplicationDbContext context) : ICommandHandler<Book
                 BirthDate = request.BirthDate.Value
             };
             await context.Passengers.AddAsync(passengerEntity);
-            request.PassengerId = passengerEntity.Id;
+            request.PassengerId = passengerEntity.Id.ToString();
         }
 
 
-        var flightEntity = await context.Flights.AsNoTracking().FirstOrDefaultAsync(a => a.Id == request.FlightId, cancellationToken);
+        var flightEntity = await context.Flights.AsNoTracking().FirstOrDefaultAsync(a => a.Id == new Guid(request.FlightId), cancellationToken);
         if (flightEntity == null)
             return Result.Fail<BookingResponse>("Uçuş bulunamadı.");
 
         TicketEntity ticketEntity = new TicketEntity
         {
-            FlightId = request.FlightId,
-            PassengerId = request.PassengerId.Value,
+            FlightId = new Guid(request.FlightId),
+            PassengerId = new Guid(request.PassengerId),
             PNR = PNRGenerator.Generate()
         };
 

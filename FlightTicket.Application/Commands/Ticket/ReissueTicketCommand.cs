@@ -13,12 +13,12 @@ public class ReissueTicketCommand(ApplicationDbContext context) : ICommandHandle
 {
     public async Task<Result<ReissueTicketResponse>> Handle(ReissueTicketRequest request, CancellationToken cancellationToken)
     {
-        var getTicket = await context.Tickets.FirstOrDefaultAsync(a => a.PassengerId == request.PassengerId && a.PNR == request.PNR && a.IsActive);
+        var getTicket = await context.Tickets.FirstOrDefaultAsync(a => a.PassengerId == new Guid(request.PassengerId) && a.PNR == request.PNR && a.IsActive);
 
         if (getTicket is null)
             return Result.Fail<ReissueTicketResponse>("Bilet bulunamadı.");
 
-        var getFlight = await context.Flights.AsNoTracking().FirstOrDefaultAsync(a => a.Id == request.NewFlightId);
+        var getFlight = await context.Flights.AsNoTracking().FirstOrDefaultAsync(a => a.Id == new Guid(request.NewFlightId));
 
         if (getFlight is null)
             return Result.Fail<ReissueTicketResponse>("uçuş bulunamadı.");
@@ -31,7 +31,7 @@ public class ReissueTicketCommand(ApplicationDbContext context) : ICommandHandle
         TicketEntity ticketEntity = new()
         {
             FlightId = getFlight.Id,
-            PassengerId = request.PassengerId,
+            PassengerId = new Guid(request.PassengerId),
             PNR = PNRGenerator.Generate()
         };
 

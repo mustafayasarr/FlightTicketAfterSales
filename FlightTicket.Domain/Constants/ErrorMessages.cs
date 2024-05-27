@@ -23,5 +23,8 @@ public static class ErrorMessages
 
 
     public const string GlobalExceptionCode = "GlobalException";
-    public const string GlobalExceptionMessage = "OverflowException";
+    public const string GlobalExceptionMessage = "GlobalException";
+
+    public const string ValidationExceptionCode = "ValidationException";
+    public const string ValidationExceptionMessage = "ValidationException";
 }
