@@ -32,7 +32,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 app.UseExceptionHandler();
-app.UseMiddleware<ExceptionLoggerMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
