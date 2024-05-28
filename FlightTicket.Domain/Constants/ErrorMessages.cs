@@ -27,4 +27,10 @@ public static class ErrorMessages
 
     public const string ValidationExceptionCode = "ValidationException";
     public const string ValidationExceptionMessage = "ValidationException";
+
+    public const string NoRecordTicketCode = "NoRecordTicket";
+    public const string NoRecordTicketMessage = "Kayıtlı bilet bulunamadı.";
+
+    public const string FlightCompletedCode = "FlightCompleted";
+    public const string FlightCompletedMessage = "Uçuş tamamlandığından dolayı bilet iptal edilemiyor.";
 }

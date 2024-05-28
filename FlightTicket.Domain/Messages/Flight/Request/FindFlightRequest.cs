@@ -13,7 +13,6 @@ public class FindFlightRequest : BaseValidationModel<FindFlightRequest>, IComman
     public string OriginAirportId { get; set; }
     public string DestinationAirportId { get; set; }
     public DateTime? DepartureDate { get; set; }
-    public short TotalPassengers { get; set; }
 }
 public class FindFlightRequestValidator : AbstractValidator<FindFlightRequest>
 {

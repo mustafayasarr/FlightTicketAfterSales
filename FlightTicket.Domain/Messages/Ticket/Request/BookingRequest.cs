@@ -15,25 +15,32 @@ public class BookingRequest:ICommand<BookingResponse>
     public string? PassengerLastName{ get; set; }
     public DateTime? BirthDate { get; set; }
 }
-public class FindFlightRequestValidator : AbstractValidator<FindFlightRequest>
+public class BookingRequestValidator : AbstractValidator<BookingRequest>
 {
-    public FindFlightRequestValidator()
+    public BookingRequestValidator()
     {
-        RuleFor(f => f.OriginAirportId)
+        RuleFor(f => f.FlightId)
              .NotNull().WithMessage(ValidationMessages.NotEmpty)
              .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
             .Must(ValidateBar).WithMessage(ValidationMessages.ValidateGuid);
 
-        RuleFor(f => f.DestinationAirportId)
+        RuleFor(f => f.PassengerId)
              .NotNull().WithMessage(ValidationMessages.NotEmpty)
              .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
             .Must(ValidateBar).WithMessage(ValidationMessages.ValidateGuid);
 
 
-        RuleFor(f => f.DestinationAirportId)
-             .NotNull().WithMessage(ValidationMessages.NotEmpty)
-             .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
-            .Must(ValidateBar).WithMessage(ValidationMessages.ValidateGuid);
+        RuleFor(f => f.PassengerName)
+             .NotNull().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger)
+             .NotEmpty().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger);
+
+        RuleFor(f => f.PassengerLastName)
+            .NotNull().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger)
+            .NotEmpty().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger);
+
+        RuleFor(f => f.BirthDate)
+           .NotNull().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger)
+           .NotEmpty().WithMessage(ValidationMessages.NotEmpty).When(a => a.IsNewPassenger);
     }
     private bool ValidateBar(string bar)
     {

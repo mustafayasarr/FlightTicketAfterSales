@@ -4,6 +4,7 @@ using FlightTicket.Domain.Interfaces.MediatR;
 using FlightTicket.Domain.Messages.Flight.Request;
 using FlightTicket.Domain.Messages.Ticket.Response;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace FlightTicket.Domain.Messages.Ticket.Request;
 
@@ -19,14 +20,15 @@ public class VoidTicketRequestValidator : AbstractValidator<VoidTicketRequest>
         RuleFor(f => f.TicketId)
              .NotNull().WithMessage(ValidationMessages.NotEmpty)
              .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
-            .Must(ValidateBar).WithMessage(ValidationMessages.ValidateGuid);
+             .Must(IsGuid).WithMessage(ValidationMessages.ValidateGuid);
 
         RuleFor(f => f.PNR)
              .NotNull().WithMessage(ValidationMessages.NotEmpty)
              .NotEmpty().WithMessage(ValidationMessages.NotEmpty);
+
     }
-    private bool ValidateBar(string bar)
+    private bool IsGuid(string value)
     {
-        return Guid.TryParse(bar, out _);
+        return Guid.TryParse(value, out _);
     }
 }

@@ -10,7 +10,7 @@ namespace FlightTicket.Domain.Messages.Ticket.Request;
 public class ReissueTicketRequest : BaseValidationModel<ReissueTicketRequest>, ICommand<ReissueTicketResponse>
 {
     public string PassengerId { get; set; }
-    public required string PNR { get; set; }
+    public  string PNR { get; set; }
     public string NewFlightId { get; set; }
 }
 public class ReissueTicketRequestValidator : AbstractValidator<ReissueTicketRequest>

@@ -1,6 +1,10 @@
-﻿using FlightTicket.Domain.Messages;
+﻿using FlightTicket.Application.Queries.Airport;
+using FlightTicket.Domain.Messages;
+using FlightTicket.Domain.Messages.Airport.Request;
 using FlightTicket.Domain.Messages.Ticket.Request;
 using FlightTicket.Domain.Messages.Ticket.Response;
+using FlightTicket.Domain.Models.Entities;
+using FlightTicket.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
