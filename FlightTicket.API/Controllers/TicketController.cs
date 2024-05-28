@@ -1,6 +1,10 @@
-﻿using FlightTicket.Domain.Messages;
-using FlightTicket.Domain.Messages.Flight.Queries.Request;
-using FlightTicket.Domain.Messages.Flight.Queries.Response;
+﻿using FlightTicket.Application.Queries.Airport;
+using FlightTicket.Domain.Messages;
+using FlightTicket.Domain.Messages.Airport.Request;
+using FlightTicket.Domain.Messages.Ticket.Request;
+using FlightTicket.Domain.Messages.Ticket.Response;
+using FlightTicket.Domain.Models.Entities;
+using FlightTicket.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -19,5 +23,29 @@ public class TicketController : BaseApiController
     public async Task<IActionResult> TicketList()
     {
         return Ok(await _mediator.Send(new GetTicketListRequest()));
+    }
+
+    [HttpPost("booking")]
+    [ProducesResponseType(typeof(Result<BookingResponse>), (int)HttpStatusCode.OK)]
+    [ProducesErrorResponseType(typeof(Result))]
+    public async Task<IActionResult> Booking([FromBody] BookingRequest request)
+    {
+        return Ok(await _mediator.Send(request));
+    }
+
+    [HttpPost("void-ticket")]
+    [ProducesResponseType(typeof(Result), (int)HttpStatusCode.OK)]
+    [ProducesErrorResponseType(typeof(Result))]
+    public async Task<IActionResult> VoidTicket([FromBody] VoidTicketRequest request)
+    {
+        return Ok(await _mediator.Send(request));
+    }
+
+    [HttpPost("reissue-ticket")]
+    [ProducesResponseType(typeof(Result<ReissueTicketResponse>), (int)HttpStatusCode.OK)]
+    [ProducesErrorResponseType(typeof(Result))]
+    public async Task<IActionResult> ReissueTicket([FromBody] ReissueTicketRequest request)
+    {
+        return Ok(await _mediator.Send(request));
     }
 }

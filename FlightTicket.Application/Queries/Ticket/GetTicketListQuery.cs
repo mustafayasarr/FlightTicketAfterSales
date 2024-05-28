@@ -1,7 +1,7 @@
 ﻿using FlightTicket.Domain.Interfaces.MediaTr;
 using FlightTicket.Domain.Messages;
-using FlightTicket.Domain.Messages.Flight.Queries.Request;
-using FlightTicket.Domain.Messages.Flight.Queries.Response;
+using FlightTicket.Domain.Messages.Ticket.Request;
+using FlightTicket.Domain.Messages.Ticket.Response;
 using FlightTicket.Domain.Models.Dtos;
 using FlightTicket.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +49,7 @@ public class GetTicketListQuery : IQueryHandler<GetTicketListRequest, List<GetTi
                 },
                 Passenger = new PassengerDto
                 {
+                    Id = a.Passenger.Id,
                     FirstName = a.Passenger.FirstName,
                     LastName = a.Passenger.LastName
                 }

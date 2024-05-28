@@ -2,7 +2,17 @@
 
 public class AirportDto
 {
-    public required string AirportCode { get; set; }
-    public required string AirportName { get; set; }
-    public required string Location { get; set; }
+    public AirportDto()
+    {
+        
+    }
+    public AirportDto(string airportCode,string airportName,string location)
+    {
+        AirportCode = airportCode;
+        AirportName = airportName;
+        Location = location;
+    }
+    public string AirportCode { get; set; }
+    public string AirportName { get; set; }
+    public string Location { get; set; }
 }

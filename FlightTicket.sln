@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightTicket.API", "FlightT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{65046ADC-5E9D-4AAC-A1FE-37C3A93B9225}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightTicket.Test", "FlightTicket.Test\FlightTicket.Test.csproj", "{15929642-EA83-4C45-B3B1-5E3E814C1304}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{FC565A41-23D1-46F9-8CDB-E8A677A789C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC565A41-23D1-46F9-8CDB-E8A677A789C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC565A41-23D1-46F9-8CDB-E8A677A789C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15929642-EA83-4C45-B3B1-5E3E814C1304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15929642-EA83-4C45-B3B1-5E3E814C1304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15929642-EA83-4C45-B3B1-5E3E814C1304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15929642-EA83-4C45-B3B1-5E3E814C1304}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{F7457E72-6AFE-45B6-A47F-F65F48384679} = {889686E0-1023-43C6-A817-EEB5725C5DB2}
 		{9BD81CD5-C127-4F6A-9EA0-CAB3750BB959} = {889686E0-1023-43C6-A817-EEB5725C5DB2}
 		{FC565A41-23D1-46F9-8CDB-E8A677A789C5} = {889686E0-1023-43C6-A817-EEB5725C5DB2}
+		{15929642-EA83-4C45-B3B1-5E3E814C1304} = {65046ADC-5E9D-4AAC-A1FE-37C3A93B9225}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {222D76F1-09FA-4D47-9089-7512BFAD029B}

@@ -2,8 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using FlightTicket.Domain.Messages.Airport.Queries.Response;
-using FlightTicket.Domain.Messages.Airport.Queries.Request;
+using FlightTicket.Domain.Messages.Airport.Request;
+using FlightTicket.Domain.Messages.Airport.Response;
 
 namespace FlightTicket.API.Controllers;
 
