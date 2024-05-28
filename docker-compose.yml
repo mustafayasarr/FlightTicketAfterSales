@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  flightticket.api:
-    image: ${DOCKER_REGISTRY-}flightticketapi
-    build:
-      context: .
-      dockerfile: FlightTicket.API/Dockerfile
